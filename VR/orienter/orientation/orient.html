@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        font-size: 12px;
+    }
+    span{
+        color: #FF7777;
+        font-size: 3rem;
+    }
+</style>
+<body>
+    <span id="alpha"></span>
+    <span id="beta"></span>
+    <span id="gamma"></span>
+</body>
+<script>
+    if(window.DeviceOrientationEvent){
+        window.addEventListener("deviceorientation", orientationHandler, false);
+    } else {
+        document.getElementsByTagName('body').innerHTML = "你的浏览器不支持~~"
+    }
+    function orientationHandler(e){
+        var alphaC = document.getElementById("#alpha"),
+            betaC = document.getElementById("#beta"),
+            gammaC = document.getElementById("#gamma");
+        var alpha = e.alpha,
+            beta = e.beta,
+            gamma = e.gamma;
+        //  判断是否是IOS装置
+        if(e.webkitCompassHeading) {
+          alpha = e.webkitCompassHeading;
+          compass.style.WebkitTransform = 'rotate(-' + alpha + 'deg)';
+          show.innerHTML = alpha;
+        } else {
+          alpha = e.alpha;
+          webkitAlpha = alpha;
+          if(!window.chrome) {
+            webkitAlpha = alpha-270;
+          }
+        }
+        alphaC.innerHTML = Math.round(alpha);
+        betaC.innerHTML = Math.round(beta);
+        gammaC.innerHTML = Math.round(gammaa);
+    }
+</script>
+</html>

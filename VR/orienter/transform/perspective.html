@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>perspective</title>
+	<style>
+		.title-area {
+			text-align: center;
+			font-size: 1.1em;
+		}
+		.title-area:nth-of-type(2) {
+			margin-top: 3em;
+		}
+		.range_area {
+			text-align: center;
+		}
+		[type="range"] {
+			width: 500px;
+		}
+		.stage-area {
+			width: 900px;
+			height: 100px;
+			margin-left: auto;
+			margin-right: auto;
+			padding: 100px 50px;
+			background-color: #f0f0f0;
+			box-shadow: inset 0 0 3px rgba(0,0,0,.35);
+			-webkit-transition: top .5s;
+			position: relative;
+			z-index: 2;
+			top: 0;
+		}
+		.perspective {
+			color: #cd0000;
+		}
+
+		.piece {
+			width: 100px;
+			height: 100px;
+			background-color: #cad5eb;
+			padding: 10px;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;	
+			float: left;
+			position: relative;
+		}
+
+		.chrome_fix {
+			position: absolute;
+			left: 1em;
+			top: 1em;
+		}
+	</style>
+</head>
+<body>
+    <div id="content" class="show">
+        <div class="demo">
+        	<h4 class="title-area">舞台宽度1000像素，整个舞台为视角对象，目前视角大小为perspective: 
+        		<span class="perspective">500</span>px;
+			</h4>
+            <div class="stage-area" style="-webkit-perspective: 500px;">
+            	<div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(51, 135, 204, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(204, 51, 112, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(204, 51, 181, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(204, 51, 138, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(87, 204, 51, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(51, 76, 204, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(156, 51, 204, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(204, 51, 117, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: rotateY(45deg); background-color: rgba(127, 51, 204, 0.74902);"></div>
+            </div>
+	        <h4 class="title-area">舞台宽度1000像素，舞台中的每个方块作为视角对象，目前视角大小为：transform: perspective( 
+	            <span class="perspective">500</span>px )
+	        </h4>
+            <div class="stage-area">
+            	<div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(51, 204, 122, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(51, 204, 71, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(204, 127, 51, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(204, 51, 184, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(51, 92, 204, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(115, 204, 51, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(61, 204, 51, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(87, 51, 204, 0.74902);"></div>
+                <div class="piece" style="-webkit-transform: perspective(500px) rotateY(45deg); background-color: rgba(51, 156, 204, 0.74902);"></div>
+            </div>
+        </div>
+    </div>       
+</body>
+</html>

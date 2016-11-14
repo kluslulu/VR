@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动事件</title>
+</head>
+<style>
+    #imgLogo{
+        background-image: url('http://z.sina.com.cn/s/media/load/165496.png');
+        width: 432px;
+        height: 441px;
+        transform-style: preserve-3d;
+        animation: spin 50s infinite linear;
+    }
+    #interval{
+        font-size: 24px;
+        color:#FF7777;
+    }
+    #gravity div, #accele div, #rotation div{
+        font-size: 20px;
+        color:#FF7777;
+    }
+</style>
+<body>
+    <div id="imgLogo"></div>
+    <div id="dmEvent"></div>
+    <div id="interval"></div>
+    <div id="gravity"></div>
+    <div id="accele"></div>
+    <div id="rotation"></div>
+</body>
+<script>
+    // 监听移动事件
+    if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+        document.getElementById("dmEvent").innerHTML = "你的设备不支持哦~~"
+    }
+    function deviceMotionHandler(e) {
+        var interval = e.interval;
+        // 捕捉重力加速度
+        var gravityX = e.accelerationIncludingGravity.x,
+            gravityY = e.accelerationIncludingGravity.y,
+            gravityZ = e.accelerationIncludingGravity.z;
+
+        var accelerationX = e.acceleration.x, 
+            accelerationY = e.acceleration.y, 
+            accelerationZ = e.acceleration.z;
+
+        var rotationX =  e.rotationRate.beta,
+            rotationY =  e.rotationRate.gamma,
+            rotationZ =  e.rotationRate.alpha;
+
+        var gravity = document.getElementById("gravity");
+        var accele = document.getElementById("accele");
+        var rotation = document.getElementById("rotation");
+        var inter = document.getElementById("interval");
+
+        gravity.innerHTML = "<div>gravityX:" + Math.round(gravityX) + "</div>"+
+                            // "<div>gravityY:" + Math.round(gravityY) + "</div>"+
+                            "<div>gravityY:" + gravityY + "</div>"+
+                            "<div>gravityZ:" + Math.round(gravityZ) + "</div>";
+        
+        accele.innerHTML = "<div>accelerationX:" + Math.round(accelerationX) + "</div>"+
+                           "<div>accelerationY:" + Math.round(accelerationY) + "</div>"+
+                           "<div>accelerationZ:" + Math.round(accelerationZ) + "</div>";
+        
+        rotation.innerHTML = "<div>rotationX:" + Math.round(rotationX) + "</div>"+
+                             "<div>rotationY:" + Math.round(rotationY) + "</div>"+
+                             "<div>rotationZ:" + Math.round(rotationZ) + "</div>";
+
+        inter.innerHTML = "interval:" + interval;
+    }
+</script>
+</html>

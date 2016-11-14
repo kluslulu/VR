@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动事件</title>
+</head>
+<style>
+    #imgLogo{
+        background-image: url('http://z.sina.com.cn/s/media/load/165496.png');
+        width: 432px;
+        height: 441px;
+        transform-style: preserve-3d;
+        animation: spin 50s infinite linear;
+    }
+    #moAccel{
+        font-size: 24px;
+        color:#FF7777;
+    }
+    #myCanvas{
+        color: #FF7777;
+        padding: 20px;
+        font-size: 44px;
+        border:1px solid #d3d3d3;
+    }
+</style>
+<body>
+    <div id="imgLogo"></div>
+    <div id="myCanvas"></div>
+    <div id="dmEvent"></div>
+    <div id="moAccel"></div>
+    <div id="acceleX"></div>
+    <div id="acceleY"></div>
+    <div id="acceleZ"></div>
+</body>
+<script>
+    // 监听移动事件
+    if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+        document.getElementById("dmEvent").innerHTML = "devicemotion not supported on your device."
+    }
+    function deviceMotionHandler(eventData) {
+        // 捕捉重力加速度
+        var acceleration = eventData.accelerationIncludingGravity;     
+        var rawAcceleration = "[" +
+                                Math.round(acceleration.x) + ", " +
+                                Math.round(acceleration.y) + ", " +
+                                Math.round(acceleration.z) +
+                              "]";
+        // 判断z轴方向
+        var facingUp = -1;
+        if (acceleration.z < 0) {
+           facingUp = 1;
+        }
+        // 计算加速度值
+        /*根据重力通过 acceleration.x|y 转换得到加速值,运用重力加速度9.81来计算得到一个百分比然后乘以转换角度90*/
+        var acceleX = Math.round(((acceleration.x) / 9.81) * -90);
+        var acceleY = Math.round(((acceleration.y + 9.81) / 9.81) * 90 * facingUp);
+        var acceleZ = Math.round(((acceleration.z + 9.81) / 9.81) * 90 * facingUp);
+
+        var div = document.createElement("div");
+            div.innerHTML =  rawAcceleration;
+        // 打印加速度的计算结果
+        var list = document.getElementById("moAccel");
+            list.insertBefore(div,list.childNodes[0]);
+        document.getElementById("myCanvas").innerHTML = rawAcceleration;
+
+        document.getElementById("acceleX").innerHTML = acceleX;
+        document.getElementById("acceleY").innerHTML = acceleY;     
+        document.getElementById("acceleZ").innerHTML = acceleZ;     
+        // 将2D和3D的转换应用到图片上
+        var rotation = "rotateX(" + acceleX + "deg) rotateY("+acceleY+"deg) rotateZ("+ acceleZ +"deg)";
+        document.getElementById("imgLogo").style.transform = rotation;
+    }
+</script>
+</html>

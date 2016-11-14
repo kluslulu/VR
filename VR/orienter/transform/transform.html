@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transform</title>
+</head>
+<style>
+	button{
+		position: absolute;
+		top: 383px;
+		left: 383px;
+	    width: 16px;
+	    height: 16px;
+	    border-radius: 8px;
+	    background: #FF5E5E;
+	}
+	.container{
+		margin: 0 auto;
+		position: absolute;
+		left: 200px;
+		padding: 80px;
+		width: 620px;
+		height: 620px;
+		border: 1px solid red;
+		perspective: 200px;
+		-webkit-perspective: 200px;
+/*		perspective-origin: 50% 50%;
+		-webkit-perspective-origin: 50% 50%;*/
+	}
+	.item{
+	    width: 100px;
+	    height: 100px;
+	    margin: 20px 0;
+	    background: #FF7777;
+	    text-align: center; 
+	    line-height: 100px;
+	    transform-origin: 50% 50%;
+	    transform-style: preserve-3d;
+	}
+	.rotateX{
+		
+	    -webkit-transform: rotateX(45deg);
+	    transform: perspective(200px) rotateX(45deg);
+	}
+	.rotateY{
+	    -webkit-transform: rotateY(-45deg);
+	    transform: perspective(200px) rotateY(-45deg);
+	}
+	.rotateZ{
+	    -webkit-transform: rotateZ(45deg);
+	    transform: perspective(200px) rotateZ(45deg);
+	}
+	.translateX{
+		-webkit-transform: translateX(10px);
+		transform: translateX(10px);
+	}
+	.translateX{
+		-webkit-transform: matrix(1,0,0,1,10,0);
+		transform: matrix(1,0,0,1,10,0);
+	}
+	.translateY{
+		-webkit-transform: translateY(10px);
+		transform: perspective(200px) translateY(10px);
+	}
+	.translateZ{
+		-webkit-transform: translateZ(10px);
+		transform: perspective(200px) translateZ(10px);
+	}
+	.scaleX{
+		
+	    -webkit-transform: scaleX(2);
+	    transform: perspective(200px) scaleX(2);
+	}
+	.scaleY{
+	    -webkit-transform: scaleY(2);
+	    transform: perspective(200px) scaleY(2);
+	}
+	.scaleZ{
+	    -webkit-transform: scaleZ(2);
+	    transform: perspective(200px) scaleZ(2);
+	}
+	.skewX{
+	    -webkit-transform: skewX(45deg);
+	    transform: perspective(200px) skewX(45deg);
+	}
+	.skewY{
+	    -webkit-transform: skewY(-45deg);
+	    transform: perspective(200px) skewY(-45deg);
+	}
+</style>
+<body>
+	<!-- <div class="container">
+		<button></button>
+		<div class="item rotateX">沿X轴旋转</div>
+		<div class="item rotateY">沿Y轴旋转</div>
+		<div class="item rotateZ">沿Z轴旋转</div>
+	</div> -->
+	<div class="container">
+		<div class="item translateX">沿X轴移动</div>
+		<div class="item translateY">沿Y轴移动</div>
+		<div class="item translateZ">沿Z轴移动</div>
+	</div>
+	<!-- <div class="container">
+		<div class="item scaleX">沿X轴缩放</div>
+		<div class="item scaleY">沿Y轴缩放</div>
+		<div class="item scaleZ">沿Z轴缩放</div>
+	</div> -->
+	<!-- <div class="container">
+		<div class="item skewX">沿X轴扭曲</div>
+		<div class="item skewY">沿Y轴扭曲</div>
+	</div> -->
+</body>
+</html>

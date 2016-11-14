@@ -1,0 +1,80 @@
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>陀螺仪</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+    <style type="text/css" media="screen">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+        #myCanvas {
+            margin: 20px auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
+    </canvas>
+</body>
+<script>
+     if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", deviceOrientationListener,false);
+    } else {
+        alert("你的浏览器不支持哦~~");
+    }
+    function deviceOrientationListener(e) {
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, c.width, c.height);
+        var alpha = e.alpha,
+            beta = e.beta,
+            gamma = e.gamma;
+        var accuracy;
+
+        ctx.fillStyle = "#FF7777";
+        ctx.font = "14px Verdana";
+        //  正北校验
+        if (e.webkitCompassHeading) {
+            alpha = e.webkitCompassHeading;
+        } else {
+            webkitAlpha = alpha;
+        }
+
+        // 精度校验
+        if (e.webkitCompassAccuracy) {
+            accuracy = e.webkitCompassAccuracy;
+        } else {
+            accuracy = "你的爪机不支持精度校验~~"
+        }
+
+        ctx.fillStyle = "#FF5E5E";
+        ctx.fillText("accuracy:" + accuracy, 10, 10);
+        
+        ctx.fillText("Alpha:" + Math.round(alpha), 10, 30);
+        ctx.beginPath();
+        ctx.moveTo(180, 75);
+        ctx.lineTo(210, 75);
+        ctx.arc(180, 75, 60, 0, alpha * Math.PI / 180);
+        ctx.fill();
+
+        ctx.fillStyle = "#FF6600";
+        ctx.fillText("Beta:" + Math.round(beta), 10, 140);
+        ctx.beginPath();
+        ctx.fillRect(180, 150, beta, 90);
+
+        ctx.fillStyle = "#FF0000";
+        ctx.fillText("Gamma:" + Math.round(gamma), 10, 270);
+        ctx.beginPath();
+        ctx.fillRect(90, 360, 180, gamma);
+
+    }
+</script>
+</html>

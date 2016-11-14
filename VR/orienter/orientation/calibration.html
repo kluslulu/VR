@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>罗盘校准</title>
+</head>
+<body>
+	
+</body>
+<script>
+	if (window.CompassNeedsCalibration) {
+        window.addEventListener('compassneedscalibration', calibrationHandler, false);
+    } else {
+        document.write("你的设备不支持哦~~");
+    }
+	function calibrationHandler (e) {
+		alert('您的罗盘需要校准，请将设备沿');
+      console.log(event);
+      e.preventDefault();
+	}
+</script>
+</html>
